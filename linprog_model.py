@@ -1,14 +1,13 @@
-#gurobi linear programming model will live in this script
+#Gurobi model will live in this script
 import pandas as pd
 import os
 import yaml
 from gurobipy import *
-import re
-import math 
+import re 
 
 
 #change directory
-os.chdir('/Users/tjurjevich/Desktop/MATH4300_DeterministicORResearchModels/project/code')
+os.chdir('[your/path/here]')
 
 #import home data that was gathered previously
 homeData = pd.read_csv('homeData.csv')
@@ -77,7 +76,7 @@ for i in homeData['ReferenceNumber']:
 mod.update()
 
 
-#Objective function
+#Objective function, based on my personal schedule.
 mod.setObjective(quicksum(xi[i]*(6*homeData['work'][i] + 8*homeData['classes'][i] + 8*homeData['gym'][i] + 2*homeData['ph'][i] + homeData['sc'][i] + homeData['wal'][i] + homeData['sc_to_wal'][i] + 2*jjMin[i] + 2*rzMin[i]) for i in homeData['ReferenceNumber']))
 mod.update()
 
@@ -87,7 +86,7 @@ mod.update()
 mod.ModelSense = 1
 mod.optimize()
 
-#Add output
+#Add output, give in both meters and miles.
 conv = 1609.34
 for i in range(0,len(mod.getVars())):
 	if mod.getVars()[i].X == 1.0:
