@@ -11,7 +11,7 @@ import os			#playing with directories
 import yaml			#importing parameters from config file
 
 #Change directory to ensure things are all saved in same location, and to read config file.
-os.chdir('/Users/tjurjevich/Desktop/MATH4300_DeterministicORResearchModels/project/code')
+os.chdir('[your/path/here]')
 
 #Import config/yaml file to load address parameters.
 with open('project_config.yaml') as configFile:
